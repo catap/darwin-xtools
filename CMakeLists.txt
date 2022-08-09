@@ -178,6 +178,10 @@ endif()
 
 # build tapilite first, so ld64 can link against it
 if(XTOOLS_USE_TAPILITE)
+  if(EXISTS ${XTOOLS_LIBYAML_PATH}/CMakeLists.txt)
+    add_subdirectory(${XTOOLS_LIBYAML_PATH})
+    include_directories("${CMAKE_SOURCE_DIR}/libyaml/include")
+  endif ()
   add_subdirectory(tapilite)
 endif()
 
