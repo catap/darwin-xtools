@@ -23,4 +23,17 @@ if (TAPI_APPLE_VERSION)
   add_definitions( -DAPPLE_VERSION="${TAPI_APPLE_VERSION}")
 endif ()
 
+set(TAPI_CXX_FLAGS)
+if(XTOOLS_C_HAS_FNOCOMMON_FLAG)
+     set(TAPI_CXX_FLAGS "-fno-common")
+endif()
+if(XTOOLS_CXX_HAS_STDCXX11_FLAG)
+     set(TAPI_CXX_FLAGS "${TAPI_CXX_FLAGS} -std=c++11")
+endif()
+if(XTOOLS_CXX_HAS_STDLIB_FLAG)
+     set(TAPI_CXX_FLAGS "${TAPI_CXX_FLAGS} -stdlib=libc++")
+endif()
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${TAPI_CXX_FLAGS} ")
+
 add_subdirectory(src)
